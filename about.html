@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我 - Sainol作品集</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Sainol</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+                <a href="games.html" class="nav-link"><i class="fas fa-gamepad"></i> 游戏库</a>
+                <a href="about.html" class="nav-link active"><i class="fas fa-user"></i> 关于我</a>
+                <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 联系</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 关于我页面 -->
+    <section class="about-page">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">关于 <span class="highlight">Sainol</span></h1>
+                <p class="page-subtitle">游戏开发者 & 创意策划</p>
+            </div>
+
+            <!-- 个人简介 -->
+            <div class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                        </div>
+                        <div class="profile-info">
+                            <h2>Sainol</h2>
+                            <p class="profile-title">新人游戏策划</p>
+                            <div class="profile-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>中国</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-content">
+                        <p class="profile-bio">
+                            我是一名充满热情的新人游戏策划，专注于创造沉浸式的游戏体验。
+                            我相信游戏不仅仅是娱乐，更是艺术、技术和创意的完美结合。
+                        </p>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">2024</span>
+                                <span class="stat-label">开始游戏开发</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">6+</span>
+                                <span class="stat-label">游戏项目</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">HTML5技术</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-quote">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="quote-text">
+                        我的目标是创造那些能够触动人心、激发思考的游戏作品。
+                        每一行代码、每一个像素都承载着我对游戏艺术的热爱。
+                    </p>
+                    <div class="quote-author">- Sainol</div>
+                </div>
+            </div>
+
+            <!-- 创作理念 -->
+            <div class="philosophy-section">
+                <h2 class="section-title">
+                    <i class="fas fa-lightbulb"></i>
+                    创作理念
+                </h2>
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <h3>沉浸体验</h3>
+                        <p>
+                            创造能够让玩家完全投入的游戏世界，
+                            让每一次互动都充满意义和情感共鸣。
+                        </p>
+                    </div>
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3>创新玩法</h3>
+                        <p>
+                            探索新颖的游戏机制和交互方式，
+                            打破传统，创造独特的游戏体验。
+                        </p>
+                    </div>
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>情感连接</h3>
+                        <p>
+                            通过精心设计的叙事和角色塑造，
+                            在游戏中建立玩家与虚拟世界的情感连接。
+                        </p>
+                    </div>
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>技术精湛</h3>
+                        <p>
+                            运用现代Web技术，确保游戏运行的
+                            流畅性和跨平台兼容性。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 开发流程 -->
+            <div class="process-section">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i>
+                    开发流程
+                </h2>
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>概念设计</h3>
+                            <p>构思游戏核心玩法、故事背景和视觉风格，创建详细的设计文档。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>原型开发</h3>
+                            <p>快速构建可玩的游戏原型，验证核心机制和用户体验。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>美术制作</h3>
+                            <p>创建像素艺术、UI设计和动画效果，构建游戏的视觉风格。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h3>编程实现</h3>
+                            <p>使用HTML5、CSS3和JavaScript实现游戏逻辑和交互功能。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">05</div>
+                        <div class="step-content">
+                            <h3>测试优化</h3>
+                            <p>进行多轮测试，优化性能，修复bug，确保游戏质量。</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">06</div>
+                        <div class="step-content">
+                            <h3>发布分享</h3>
+                            <p>部署到在线平台，收集玩家反馈，持续更新迭代。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 技术栈 -->
+            <div class="skills-section">
+                <h2 class="section-title">
+                    <i class="fas fa-tools"></i>
+                    技术能力
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>前端技术</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <span class="skill-name">HTML5</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 95%"></div>
+                                </div>
+                                <span class="skill-percent">95%</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">CSS3</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 88%"></div>
+                                </div>
+                                <span class="skill-percent">88%</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Canvas API</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>游戏开发</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <span class="skill-name">游戏设计</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 92%"></div>
+                                </div>
+                                <span class="skill-percent">92%</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">关卡设计</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 88%"></div>
+                                </div>
+                                <span class="skill-percent">88%</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">平衡调整</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">用户体验</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 87%"></div>
+                                </div>
+                                <span class="skill-percent">87%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>设计工具</h3>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <span class="skill-name">像素艺术</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">UI/UX设计</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 82%"></div>
+                                </div>
+                                <span class="skill-percent">82%</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">动画制作</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 78%"></div>
+                                </div>
+                                <span class="skill-percent">78%</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">音效设计</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 75%"></div>
+                                </div>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 未来计划 -->
+            <div class="future-section">
+                <h2 class="section-title">
+                    <i class="fas fa-rocket"></i>
+                    未来计划
+                </h2>
+                <div class="future-goals">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>移动游戏</h3>
+                        <p>开发适配移动设备的游戏，扩大玩家群体，优化触控操作体验。</p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>多人联机</h3>
+                        <p>实现实时多人游戏功能，创建玩家社区和排行榜系统。</p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI增强</h3>
+                        <p>集成智能AI对手，提供更加智能和自适应的游戏体验。</p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>教育游戏</h3>
+                        <p>开发寓教于乐的游戏作品，将知识传播与游戏体验相结合。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-text">Sainol</span>
+                        <span class="logo-dot">.</span>
+                    </a>
+                    <p class="footer-description">
+                        专注于创造沉浸式游戏体验的新人游戏策划
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>快速链接</h4>
+                        <a href="index.html">首页</a>
+                        <a href="games.html">游戏库</a>
+                        <a href="about.html">关于我</a>
+                        <a href="contact.html">联系</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>游戏分类</h4>
+                        <a href="games.html" data-category="strategy">策略游戏</a>
+                        <a href="games.html" data-category="puzzle">解谜游戏</a>
+                        <a href="games.html" data-category="arcade">街机游戏</a>
+                        <a href="games.html" data-category="casual">休闲游戏</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>联系信息</h4>
+                        <p><i class="fas fa-envelope"></i> sainol@163.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 中国</p>
+                        <p><i class="fas fa-briefcase"></i> 新人游戏策划</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sainol. 保留所有权利。</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/about.js"></script>
+</body>
+</html>

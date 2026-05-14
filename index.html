@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sainol - 游戏开发者作品集</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-text">Sainol</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active"><i class="fas fa-home"></i> 首页</a>
+                <a href="#games" class="nav-link"><i class="fas fa-gamepad"></i> 游戏库</a>
+                <a href="#about" class="nav-link"><i class="fas fa-user"></i> 关于我</a>
+                <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> 联系</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 首页英雄区域 -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-gamepad"></i> 游戏开发者
+                </div>
+                <h1 class="hero-title">我是 <span class="highlight">Sainol</span></h1>
+                <p class="hero-subtitle">新人游戏策划 & 创意开发者</p>
+                <p class="hero-description">
+                    专注于创造沉浸式游戏体验，将创意转化为可玩的数字世界。<br>
+                    探索我的游戏作品，直接在网页上游玩。
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">游戏作品</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">HTML5支持</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">中国</span>
+                        <span class="stat-label">所在地</span>
+                    </div>
+                </div>
+                <div class="hero-cta">
+                    <a href="#games" class="btn btn-primary">
+                        <i class="fas fa-play"></i> 探索游戏
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> 联系我
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="game-preview">
+                    <div class="game-screen">
+                        <div class="screen-content">
+                            <div class="pixel-grid"></div>
+                        </div>
+                    </div>
+                    <div class="game-controls">
+                        <div class="controller">
+                            <div class="d-pad"></div>
+                            <div class="buttons">
+                                <div class="btn-a"></div>
+                                <div class="btn-b"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精选游戏 -->
+    <section class="featured-games">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">精选游戏作品</h2>
+                <p class="section-subtitle">点击即可在线游玩</p>
+            </div>
+            <div class="games-grid">
+                <div class="game-card featured">
+                    <div class="game-badge">
+                        <i class="fas fa-star"></i> 精选
+                    </div>
+                    <div class="game-preview-img">
+                        <div class="pixel-art tic-tac-toe"></div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">井字棋大师</h3>
+                        <p class="game-description">经典策略游戏重制版，支持AI对战和在线多人模式</p>
+                        <div class="game-tags">
+                            <span class="tag strategy">策略</span>
+                            <span class="tag multiplayer">多人</span>
+                            <span class="tag html5">HTML5</span>
+                        </div>
+                        <div class="game-meta">
+                            <span><i class="far fa-clock"></i> 5-10分钟</span>
+                            <span><i class="fas fa-users"></i> 1-2人</span>
+                        </div>
+                        <a href="games/tic-tac-toe.html" class="btn btn-play">
+                            <i class="fas fa-play-circle"></i> 立即游玩
+                        </a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-preview-img">
+                        <div class="pixel-art puzzle"></div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">像素迷宫</h3>
+                        <p class="game-description">复古风格的解谜游戏，探索随机生成的迷宫</p>
+                        <div class="game-tags">
+                            <span class="tag puzzle">解谜</span>
+                            <span class="tag retro">复古</span>
+                            <span class="tag html5">HTML5</span>
+                        </div>
+                        <a href="#" class="btn btn-play">
+                            <i class="fas fa-play-circle"></i> 即将上线
+                        </a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-preview-img">
+                        <div class="pixel-art arcade"></div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">太空保卫战</h3>
+                        <p class="game-description">街机风格的射击游戏，抵御无尽的敌人进攻</p>
+                        <div class="game-tags">
+                            <span class="tag arcade">街机</span>
+                            <span class="tag action">动作</span>
+                            <span class="tag html5">HTML5</span>
+                        </div>
+                        <a href="#" class="btn btn-play">
+                            <i class="fas fa-play-circle"></i> 即将上线
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">技术能力</h2>
+                <p class="section-subtitle">游戏开发技术栈</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3>HTML5游戏</h3>
+                    <p>使用Canvas和WebGL开发跨平台游戏</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <h3>JavaScript</h3>
+                    <p>ES6+现代JavaScript开发</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fab fa-unity"></i>
+                    </div>
+                    <h3>游戏设计</h3>
+                    <p>关卡设计、平衡调整、用户体验</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>像素艺术</h3>
+                    <p>复古风格像素艺术创作</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-text">Sainol</span>
+                        <span class="logo-dot">.</span>
+                    </a>
+                    <p class="footer-description">
+                        专注于创造沉浸式游戏体验的新人游戏策划
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>快速链接</h4>
+                        <a href="#home">首页</a>
+                        <a href="#games">游戏库</a>
+                        <a href="#about">关于我</a>
+                        <a href="#contact">联系</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>游戏分类</h4>
+                        <a href="#">策略游戏</a>
+                        <a href="#">解谜游戏</a>
+                        <a href="#">街机游戏</a>
+                        <a href="#">休闲游戏</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>联系信息</h4>
+                        <p><i class="fas fa-envelope"></i> sainol@163.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 中国</p>
+                        <p><i class="fas fa-briefcase"></i> 新人游戏策划</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sainol. 保留所有权利。</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

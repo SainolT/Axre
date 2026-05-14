@@ -1,0 +1,4 @@
+sainol-games.github.io
+# 如果Sainol想要使用自定义域名，可以在这里设置
+# 例如：portfolio.sainol.com
+# 注意：需要在DNS提供商处设置CNAME记录指向sainol.github.io

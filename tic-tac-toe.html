@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>井字棋 - Sainol的游戏作品集</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+    <!-- 使用相同的CSS样式 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 井字棋专用样式 */
+        .game-container {
+            padding: var(--space-xl) 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .game-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            max-width: 800px;
+            padding: 0 var(--space-md);
+        }
+        
+        .game-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .game-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .game-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xl);
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 var(--space-md);
+        }
+        
+        .game-area {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            width: 100%;
+        }
+        
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 12px;
+            background: var(--secondary-bg);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-cell {
+            aspect-ratio: 1;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-cell:hover {
+            background: var(--accent-bg);
+            border-color: var(--neon-cyan);
+            transform: translateY(-2px);
+        }
+        
+        .game-cell.x {
+            color: var(--neon-cyan);
+        }
+        
+        .game-cell.o {
+            color: var(--neon-purple);
+        }
+        
+        .game-cell.winning {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(170, 0, 255, 0.1));
+            border-color: var(--neon-green);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 157, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 157, 0.6); }
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-lg);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .player-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
+            flex: 1;
+        }
+        
+        .player-turn {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .player-mark {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .player-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .current-turn {
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            border-radius: var(--radius-md);
+            padding: var(--space-sm) var(--space-lg);
+            transform: scale(1.05);
+        }
+        
+        .current-turn .player-turn {
+            color: white;
+        }
+        
+        .game-status {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
+            flex: 1;
+        }
+        
+        .status-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            min-height: 2.5rem;
+        }
+        
+        .moves-count {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        .game-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .btn-game {
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--neon-shadow);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--neon-cyan);
+            border-color: var(--neon-cyan);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 245, 255, 0.1);
+        }
+        
+        .btn-danger {
+            background: transparent;
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+        
+        .btn-danger:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+        
+        .game-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .game-tutorial {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .tutorial-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            text-align: center;
+        }
+        
+        .tutorial-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .tutorial-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: var(--space-sm);
+        }
+        
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary-bg);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .step-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .game-ai {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .ai-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .ai-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .ai-difficulty {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .ai-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+        }
+        
+        .ai-option {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .ai-option:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-2px);
+        }
+        
+        .ai-option.active {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(170, 0, 255, 0.1));
+            border-color: var(--neon-cyan);
+        }
+        
+        .option-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .option-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        .mobile-warning {
+            display: none;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 152, 0, 0.1));
+            border: 1px solid #ff9800;
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            text-align: center;
+            margin: var(--space-md) 0;
+        }
+        
+        .mobile-warning i {
+            color: #ff9800;
+            font-size: 1.5rem;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .mobile-warning p {
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        @media (max-width: 768px) {
+            .game-title {
+                font-size: 2.5rem;
+            }
+            
+            .game-board {
+                max-width: 90vw;
+                gap: 8px;
+                padding: 15px;
+            }
+            
+            .game-cell {
+                font-size: 3rem;
+            }
+            
+            .game-info {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+            
+            .game-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-game {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .mobile-warning {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .game-title {
+                font-size: 2rem;
+            }
+            
+            .game-cell {
+                font-size: 2.5rem;
+            }
+            
+            .player-mark {
+                font-size: 2rem;
+            }
+            
+            .player-name {
+                font-size: 1rem;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes cellPop {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cell-new {
+            animation: cellPop 0.3s ease-out;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="index.html">Sainol</a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">首页</a>
+            <a href="games.html">游戏库</a>
+            <a href="about.html">关于我</a>
+            <a href="contact.html">联系</a>
+            <a href="tic-tac-toe.html" class="nav-active">井字棋</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <!-- 游戏容器 -->
+    <main class="game-container">
+        <div class="game-header fade-in">
+            <h1 class="game-title">井字棋</h1>
+            <p class="game-subtitle">经典策略游戏，挑战AI对手，测试你的逻辑思维！</p>
+        </div>
+        
+        <div class="mobile-warning fade-in">
+            <i class="fas fa-mobile-alt"></i>
+            <p>在移动设备上获得最佳体验，请将设备横屏显示</p>
+        </div>
+        
+        <div class="game-main">
+            <!-- 游戏区域 -->
+            <div class="game-area fade-in">
+                <div class="game-controls">
+                    <button class="btn-game btn-primary" id="newGameBtn">
+                        <i class="fas fa-plus"></i>
+                        新游戏
+                    </button>
+                    <button class="btn-game btn-secondary" id="undoBtn">
+                        <i class="fas fa-undo"></i>
+                        撤销
+                    </button>
+                    <button class="btn-game btn-danger" id="resetBtn">
+                        <i class="fas fa-redo"></i>
+                        重置统计
+                    </button>
+                </div>
+                
+                <div class="game-board" id="gameBoard">
+                    <!-- 游戏格子将通过JavaScript生成 -->
+                </div>
+                
+                <div class="game-info">
+                    <div class="player-info current-turn" id="playerX">
+                        <div class="player-turn">当前回合</div>
+                        <div class="player-mark x">X</div>
+                        <div class="player-name">玩家 (X)</div>
+                    </div>
+                    
+                    <div class="game-status">
+                        <div class="status-text" id="gameStatus">轮到玩家X</div>
+                        <div class="moves-count" id="movesCount">移动次数: 0</div>
+                    </div>
+                    
+                    <div class="player-info" id="playerO">
+                        <div class="player-turn">AI对手</div>
+                        <div class="player-mark o">O</div>
+                        <div class="player-name">AI (O)</div>
+                    </div>
+                </div>
+                
+                <div class="game-actions">
+                    <button class="btn-game btn-secondary" id="hintBtn">
+                        <i class="fas fa-lightbulb"></i>
+                        提示
+                    </button>
+                    <button class="btn-game btn-secondary" id="autoPlayBtn">
+                        <i class="fas fa-robot"></i>
+                        自动对战
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 游戏统计 -->
+            <div class="game-stats fade-in">
+                <div class="stat-card">
+                    <div class="stat-value" id="gamesPlayed">0</div>
+                    <div class="stat-label">总游戏数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="wins">0</div>
+                    <div class="stat-label">胜利次数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="losses">0</div>
+                    <div class="stat-label">失败次数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="draws">0</div>
+                    <div class="stat-label">平局次数</div>
+                </div>
+            </div>
+            
+            <!-- AI设置 -->
+            <div class="game-ai fade-in">
+                <div class="ai-header">
+                    <h3 class="ai-title">AI对手设置</h3>
+                    <div class="ai-difficulty">
+                        <span class="player-turn">难度:</span>
+                        <select id="aiDifficulty" class="form-select">
+                            <option value="easy">简单</option>
+                            <option value="medium" selected>中等</option>
+                            <option value="hard">困难</option>
+                            <option value="expert">专家</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ai-options">
+                    <div class="ai-option" data-difficulty="easy">
+                        <div class="option-name">简单模式</div>
+                        <div class="option-description">AI随机移动，适合初学者</div>
+                    </div>
+                    <div class="ai-option active" data-difficulty="medium">
+                        <div class="option-name">中等模式</div>
+                        <div class="option-description">AI会阻止获胜，有一定挑战</div>
+                    </div>
+                    <div class="ai-option" data-difficulty="hard">
+                        <div class="option-name">困难模式</div>
+                        <div class="option-description">AI会寻找获胜机会</div>
+                    </div>
+                    <div class="ai-option" data-difficulty="expert">
+                        <div class="option-name">专家模式</div>
+                        <div class="option-description">AI使用极小化极大算法</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 游戏教程 -->
+            <div class="game-tutorial fade-in">
+                <h3 class="tutorial-title">游戏规则与技巧</h3>
+                <div class="tutorial-steps">
+                    <div class="tutorial-step">
+                        <div class="step-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h4 class="step-title">目标</h4>
+                        <p class="step-description">玩家使用X，AI使用O。第一个将三个标记连成一条线（横、竖、斜）的玩家获胜。</p>
+                    </div>
+                    <div class="tutorial-step">
+                        <div class="step-icon">
+                            <i class="fas fa-chess-board"></i>
+                        </div>
+                        <h4 class="step-title">策略</h4>
+                        <p class="step-description">占据中心位置最有优势，其次是角落位置。同时创建两个获胜机会可以确保胜利。</p>
+                    </div>
+                    <div class="tutorial-step">
+                        <div class="step-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4 class="step-title">AI对手</h4>
+                        <p class="step-description">AI使用不同难度的算法。专家模式使用极小化极大算法，保证最优解。</p>
+                    </div>
+                    <div class="tutorial-step">
+                        <div class="step-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h4 class="step-title">获胜技巧</h4>
+                        <p class="step-description">尝试创建"叉"布局，让AI被迫防守。同时观察AI的布局，防止其创建获胜机会。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Sainol</div>
+            <div class="footer-tagline">新人游戏策划 · HTML5游戏开发者 · 创意实现者</div>
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="games.html">游戏库</a>
+                <a href="about.html">关于我</a>
+                <a href="contact.html">联系</a>
+                <a href="tic-tac-toe.html">井字棋</a>
+            </div>
+            <div class="footer-copyright">
+                © 2026 Sainol. 保留所有权利。<br>
+                本网站上的所有游戏均为HTML5实现，支持现代浏览器。
+            </div>
+        </div>
+    </footer>
+
+    <!-- 井字棋游戏逻辑 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 游戏状态
+            const gameState = {
+                board: ['', '', '', '', '', '', '', '', ''],
+                currentPlayer: 'X',
+                gameActive: true,
+                moves: 0,
+                scores: {
+                    gamesPlayed: 0,
+                    wins: 0,
+                    losses: 0,
+                    draws: 0
+                },
+                gameHistory: [],
+                aiDifficulty: 'medium'
+            };
+
+            // 获胜组合
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // 行
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // 列
+                [0, 4, 8], [2, 4, 6] // 对角线
+            ];
+
+            // DOM元素
+            const gameBoard = document.getElementById('gameBoard');
+            const gameStatus = document.getElementById('gameStatus');
+            const movesCount = document.getElementById('movesCount');
+            const playerX = document.getElementById('playerX');
+            const playerO = document.getElementById('playerO');
+            const aiDifficulty = document.getElementById('aiDifficulty');
+            const aiOptions = document.querySelectorAll('.ai-option');
+            
+            // 统计元素
+            const gamesPlayedElement = document.getElementById('gamesPlayed');
+            const winsElement = document.getElementById('wins');
+            const lossesElement = document.getElementById('losses');
+            const drawsElement = document.getElementById('draws');
+
+            // 初始化游戏板
+            function initializeBoard() {
+                gameBoard.innerHTML = '';
+                for (let i = 0; i < 9; i++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'game-cell';
+                    cell.dataset.index = i;
+                    cell.addEventListener('click', () => handleCellClick(i));
+                    gameBoard.appendChild(cell);
+                }
+            }
+
+            // 处理格子点击
+            function handleCellClick(index) {
+                if (!gameState.gameActive || gameState.board[index] !== '') return;
+                
+                // 玩家移动
+                makeMove(index, gameState.currentPlayer);
+                
+                // 检查游戏状态
+                if (checkGameStatus()) return;
+                
+                // AI移动
+                if (gameState.gameActive) {
+                    setTimeout(() => {
+                        const aiMove = getAIMove();
+                        if (aiMove !== -1) {
+                            makeMove(aiMove, 'O');
+                            checkGameStatus();
+                        }
+                    }, 500);
+                }
+            }
+
+            // 执行移动
+            function makeMove(index, player) {
+                // 更新游戏状态
+                gameState.board[index] = player;
+                gameState.moves++;
+                gameState.gameHistory.push([...gameState.board]);
+                
+                // 更新UI
+                const cell = document.querySelector(`.game-cell[data-index="${index}"]`);
+                cell.textContent = player;
+                cell.classList.add(player.toLowerCase(), 'cell-new');
+                
+                // 更新移动次数
+                movesCount.textContent = `移动次数: ${gameState.moves}`;
+                
+                // 切换玩家
+                gameState.currentPlayer = gameState.currentPlayer === 'X' ? 'O' : 'X';
+                updatePlayerTurn();
+            }
+
+            // 更新玩家回合显示
+            function updatePlayerTurn() {
+                if (gameState.currentPlayer === 'X') {
+                    playerX.classList.add('current-turn');
+                    playerO.classList.remove('current-turn');
+                    gameStatus.textContent = '轮到玩家X';
+                } else {
+                    playerO.classList.add('current-turn');
+                    playerX.classList.remove('current-turn');
+                    gameStatus.textContent = 'AI思考中...';
+                }
+            }
+
+            // 检查游戏状态
+            function checkGameStatus() {
+                // 检查获胜
+                for (const pattern of winPatterns) {
+                    const [a, b, c] = pattern;
+                    if (gameState.board[a] && 
+                        gameState.board[a] === gameState.board[b] && 
+                        gameState.board[a] === gameState.board[c]) {
+                        
+                        // 高亮获胜格子
+                        pattern.forEach(index => {
+                            document.querySelector(`.game-cell[data-index="${index}"]`).classList.add('winning');
+                        });
+                        
+                        // 更新游戏状态
+                        gameState.gameActive = false;
+                        gameState.scores.gamesPlayed++;
+                        
+                        if (gameState.board[a] === 'X') {
+                            gameState.scores.wins++;
+                            gameStatus.textContent = '玩家获胜！🎉';
+                        } else {
+                            gameState.scores.losses++;
+                            gameStatus.textContent = 'AI获胜！🤖';
+                        }
+                        
+                        updateStats();
+                        return true;
+                    }
+                }
+                
+                // 检查平局
+                if (!gameState.board.includes('')) {
+                    gameState.gameActive = false;
+                    gameState.scores.gamesPlayed++;
+                    gameState.scores.draws++;
+                    gameStatus.textContent = '平局！🤝';
+                    updateStats();
+                    return true;
+                }
+                
+                return false;
+            }
+
+            // 获取AI移动
+            function getAIMove() {
+                const emptyCells = gameState.board.map((cell, index) => cell === '' ? index : -1).filter(index => index !== -1);
+                
+                if (emptyCells.length === 0) return -1;
+                
+                switch (gameState.aiDifficulty) {
+                    case 'easy':
+                        return getRandomMove(emptyCells);
+                    case 'medium':
+                        return getMediumAIMove(emptyCells);
+                    case 'hard':
+                        return getHardAIMove(emptyCells);
+                    case 'expert':
+                        return getExpertAIMove();
+                    default:
+                        return getRandomMove(emptyCells);
+                }
+            }
+
+            // 随机移动
+            function getRandomMove(emptyCells) {
+                return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            }
+
+            // 中等AI移动（阻止获胜，尝试获胜）
+            function getMediumAIMove(emptyCells) {
+                // 尝试获胜
+                for (const cell of emptyCells) {
+                    const testBoard = [...gameState.board];
+                    testBoard[cell] = 'O';
+                    if (checkWinner(testBoard, 'O')) return cell;
+                }
+                
+                // 阻止玩家获胜
+                for (const cell of emptyCells) {
+                    const testBoard = [...gameState.board];
+                    testBoard[cell] = 'X';
+                    if (checkWinner(testBoard, 'X')) return cell;
+                }
+                
+                // 优先选择中心
+                if (emptyCells.includes(4)) return 4;
+                
+                // 优先选择角落
+                const corners = [0, 2, 6, 8].filter(cell => emptyCells.includes(cell));
+                if (corners.length > 0) return corners[Math.floor(Math.random() * corners.length)];
+                
+                // 随机选择
+                return getRandomMove(emptyCells);
+            }
+
+            // 困难AI移动（使用简单评分）
+            function getHardAIMove(emptyCells) {
+                // 尝试获胜
+                for (const cell of emptyCells) {
+                    const testBoard = [...gameState.board];
+                    testBoard[cell] = 'O';
+                    if (checkWinner(testBoard, 'O')) return cell;
+                }
+                
+                // 阻止玩家获胜
+                for (const cell of emptyCells) {
+                    const testBoard = [...gameState.board];
+                    testBoard[cell] = 'X';
+                    if (checkWinner(testBoard, 'X')) return cell;
+                }
+                
+                // 使用评分系统
+                const scores = emptyCells.map(cell => {
+                    let score = 0;
+                    
+                    // 中心位置最高分
+                    if (cell === 4) score += 3;
+                    
+                    // 角落位置次高分
+                    if ([0, 2, 6, 8].includes(cell)) score += 2;
+                    
+                    // 边缘位置
+                    if ([1, 3, 5, 7].includes(cell)) score += 1;
+                    
+                    // 创建两个获胜机会
+                    const testBoard = [...gameState.board];
+                    testBoard[cell] = 'O';
+                    if (countWinningMoves(testBoard, 'O') >= 2) score += 4;
+                    
+                    // 阻止玩家创建两个获胜机会
+                    testBoard[cell] = 'X';
+                    if (countWinningMoves(testBoard, 'X') >= 2) score += 3;
+                    
+                    return { cell, score };
+                });
+                
+                // 选择最高分的移动
+                scores.sort((a, b) => b.score - a.score);
+                return scores[0].cell;
+            }
+
+            // 专家AI移动（极小化极大算法）
+            function getExpertAIMove() {
+                const bestMove = minimax(gameState.board, 'O', 0, -Infinity, Infinity);
+                return bestMove.index;
+            }
+
+            // 极小化极大算法
+            function minimax(board, player, depth, alpha, beta) {
+                // 检查游戏结束
+                if (checkWinner(board, 'X')) return { score: -10 + depth };
+                if (checkWinner(board, 'O')) return { score: 10 - depth };
+                if (!board.includes('')) return { score: 0 };
+                
+                const emptyCells = board.map((cell, index) => cell === '' ? index : -1).filter(index => index !== -1);
+                
+                if (player === 'O') {
+                    let bestScore = -Infinity;
+                    let bestMove = -1;
+                    
+                    for (const cell of emptyCells) {
+                        const newBoard = [...board];
+                        newBoard[cell] = 'O';
+                        const result = minimax(newBoard, 'X', depth + 1, alpha, beta);
+                        
+                        if (result.score > bestScore) {
+                            bestScore = result.score;
+                            bestMove = cell;
+                        }
+                        
+                        alpha = Math.max(alpha, bestScore);
+                        if (beta <= alpha) break;
+                    }
+                    
+                    return { score: bestScore, index: bestMove };
+                } else {
+                    let bestScore = Infinity;
+                    let bestMove = -1;
+                    
+                    for (const cell of emptyCells) {
+                        const newBoard = [...board];
+                        newBoard[cell] = 'X';
+                        const result = minimax(newBoard, 'O', depth + 1, alpha, beta);
+                        
+                        if (result.score < bestScore) {
+                            bestScore = result.score;
+                            bestMove = cell;
+                        }
+                        
+                        beta = Math.min(beta, bestScore);
+                        if (beta <= alpha) break;
+                    }
+                    
+                    return { score: bestScore, index: bestMove };
+                }
+            }
+
+            // 检查棋盘是否有获胜者
+            function checkWinner(board, player) {
+                for (const pattern of winPatterns) {
+                    const [a, b, c] = pattern;
+                    if (board[a] === player && board[b] === player && board[c] === player) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            // 计算获胜移动数量
+            function countWinningMoves(board, player) {
+                let count = 0;
+                const emptyCells = board.map((cell, index) => cell === '' ? index : -1).filter(index => index !== -1);
+                
+                for (const cell of emptyCells) {
+                    const testBoard = [...board];
+                    testBoard[cell] = player;
+                    if (checkWinner(testBoard, player)) count++;
+                }
+                
+                return count;
+            }
+
+            // 更新统计
+            function updateStats() {
+                gamesPlayedElement.textContent = gameState.scores.gamesPlayed;
+                winsElement.textContent = gameState.scores.wins;
+                lossesElement.textContent = gameState.scores.losses;
+                drawsElement.textContent = gameState.scores.draws;
+                
+                // 保存到localStorage
+                localStorage.setItem('ticTacToeStats', JSON.stringify(gameState.scores));
+            }
+
+            // 新游戏
+            function newGame() {
+                gameState.board = ['', '', '', '', '', '', '', '', ''];
+                gameState.currentPlayer = 'X';
+                gameState.gameActive = true;
+                gameState.moves = 0;
+                gameState.gameHistory = [];
+                
+                // 重置UI
+                document.querySelectorAll('.game-cell').forEach(cell => {
+                    cell.textContent = '';
+                    cell.classList.remove('x', 'o', 'cell-new', 'winning');
+                });
+                
+                gameStatus.textContent = '轮到玩家X';
+                movesCount.textContent = '移动次数: 0';
+                updatePlayerTurn();
+            }
+
+            // 撤销移动
+            function undoMove() {
+                if (gameState.gameHistory.length <= 1) return;
+                
+                // 移除最后两次移动（玩家和AI）
+                gameState.gameHistory.pop(); // AI移动
+                gameState.gameHistory.pop(); // 玩家移动
+                
+                if (gameState.gameHistory.length > 0) {
+                    gameState.board = [...gameState.gameHistory[gameState.gameHistory.length - 1]];
+                } else {
+                    gameState.board = ['', '', '', '', '', '', '', '', ''];
+                }
+                
+                gameState.currentPlayer = 'X';
+                gameState.gameActive = true;
+                gameState.moves = Math.max(0, gameState.moves - 2);
+                
+                // 更新UI
+                document.querySelectorAll('.game-cell').forEach((cell, index) => {
+                    cell.textContent = gameState.board[index];
+                    cell.classList.remove('x', 'o', 'cell-new', 'winning');
+                    if (gameState.board[index]) {
+                        cell.classList.add(gameState.board[index].toLowerCase());
+                    }
+                });
+                
+                gameStatus.textContent = '轮到玩家X';
+                movesCount.textContent = `移动次数: ${gameState.moves}`;
+                updatePlayerTurn();
+            }
+
+            // 重置统计
+            function resetStats() {
+                if (!confirm('确定要重置所有游戏统计吗？此操作不可撤销。')) return;
+                
+                gameState.scores = {
+                    gamesPlayed: 0,
+                    wins: 0,
+                    losses: 0,
+                    draws: 0
+                };
+                
+                updateStats();
+                localStorage.removeItem('ticTacToeStats');
+            }
+
+            // 显示提示
+            function showHint() {
+                if (!gameState.gameActive || gameState.currentPlayer !== 'X') return;
+                
+                const emptyCells = gameState.board.map((cell, index) => cell === '' ? index : -1).filter(index => index !== -1);
+                if (emptyCells.length === 0) return;
+                
+                // 使用中等AI逻辑找到最佳移动
+                const bestMove = getMediumAIMove(emptyCells);
+                
+                // 高亮提示
+                const cell = document.querySelector(`.game-cell[data-index="${bestMove}"]`);
+                cell.style.boxShadow = '0 0 20px var(--neon-green)';
+                cell.style.borderColor = 'var(--neon-green)';
+                
+                setTimeout(() => {
+                    cell.style.boxShadow = '';
+                    cell.style.borderColor = '';
+                }, 1000);
+                
+                // 显示提示文本
+                const originalText = gameStatus.textContent;
+                gameStatus.textContent = '建议移动：' + (bestMove + 1);
+                
+                setTimeout(() => {
+                    if (gameState.gameActive) {
+                        gameStatus.textContent = originalText;
+                    }
+                }, 2000);
+            }
+
+            // 自动对战
+            function autoPlay() {
+                if (!confirm('开始自动对战？AI将对战AI，观察机器学习过程。')) return;
+                
+                newGame();
+                gameState.gameActive = false;
+                gameStatus.textContent = '自动对战中...';
+                
+                let moveCount = 0;
+                const maxMoves = 9;
+                const autoPlayInterval = setInterval(() => {
+                    if (moveCount >= maxMoves || !gameState.board.includes('')) {
+                        clearInterval(autoPlayInterval);
+                        gameState.gameActive = true;
+                        gameStatus.textContent = '自动对战结束';
+                        return;
+                    }
+                    
+                    const aiMove = getAIMove();
+                    if (aiMove !== -1) {
+                        makeMove(aiMove, moveCount % 2 === 0 ? 'X' : 'O');
+                        checkGameStatus();
+                        moveCount++;
+                    }
+                }, 800);
+            }
+
+            // 加载保存的统计
+            function loadSavedStats() {
+                const savedStats = localStorage.getItem('ticTacToeStats');
+                if (savedStats) {
+                    try {
+                        gameState.scores = JSON.parse(savedStats);
+                        updateStats();
+                    } catch (e) {
+                        console.error('加载统计失败:', e);
+                    }
+                }
+            }
+
+            // 事件监听器
+            document.getElementById('newGameBtn').addEventListener('click', newGame);
+            document.getElementById('undoBtn').addEventListener('click', undoMove);
+            document.getElementById('resetBtn').addEventListener('click', resetStats);
+            document.getElementById('hintBtn').addEventListener('click', showHint);
+            document.getElementById('autoPlayBtn').addEventListener('click', autoPlay);
+            
+            // AI难度选择
+            aiDifficulty.addEventListener('change', function() {
+                gameState.aiDifficulty = this.value;
+                
+                // 更新选项高亮
+                aiOptions.forEach(option => {
+                    option.classList.remove('active');
+                    if (option.dataset.difficulty === this.value) {
+                        option.classList.add('active');
+                    }
+                });
+            });
+            
+            // AI选项点击
+            aiOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const difficulty = this.dataset.difficulty;
+                    gameState.aiDifficulty = difficulty;
+                    aiDifficulty.value = difficulty;
+                    
+                    // 更新选项高亮
+                    aiOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 主题切换
+            const themeToggle = document.getElementById('themeToggle');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', theme);
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+            
+            // 初始化
+            initializeBoard();
+            loadSavedStats();
+            setTheme(localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light'));
+        });
+    </script>
+</body>
+</html>

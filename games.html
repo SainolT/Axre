@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏库 - Sainol作品集</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Sainol</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+                <a href="games.html" class="nav-link active"><i class="fas fa-gamepad"></i> 游戏库</a>
+                <a href="about.html" class="nav-link"><i class="fas fa-user"></i> 关于我</a>
+                <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> 联系</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 游戏库页面 -->
+    <section class="games-page">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">游戏作品库</h1>
+                <p class="page-subtitle">探索我所有的游戏作品，点击即可在线游玩</p>
+            </div>
+
+            <!-- 游戏筛选器 -->
+            <div class="games-filter">
+                <div class="filter-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="gameSearch" placeholder="搜索游戏...">
+                    </div>
+                    <div class="filter-tags">
+                        <button class="filter-btn active" data-category="all">
+                            <i class="fas fa-globe"></i> 全部
+                        </button>
+                        <button class="filter-btn" data-category="strategy">
+                            <i class="fas fa-chess"></i> 策略
+                        </button>
+                        <button class="filter-btn" data-category="puzzle">
+                            <i class="fas fa-puzzle-piece"></i> 解谜
+                        </button>
+                        <button class="filter-btn" data-category="arcade">
+                            <i class="fas fa-space-shuttle"></i> 街机
+                        </button>
+                        <button class="filter-btn" data-category="casual">
+                            <i class="fas fa-smile"></i> 休闲
+                        </button>
+                        <button class="filter-btn" data-category="html5">
+                            <i class="fab fa-html5"></i> HTML5
+                        </button>
+                    </div>
+                </div>
+                <div class="filter-stats">
+                    <span class="stat-item">
+                        <i class="fas fa-gamepad"></i>
+                        <span id="totalGames">6</span> 个游戏
+                    </span>
+                    <span class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="totalPlaytime">25</span> 小时内容
+                    </span>
+                </div>
+            </div>
+
+            <!-- 游戏网格 -->
+            <div class="games-grid" id="gamesGrid">
+                <!-- 井字棋大师 -->
+                <div class="game-card" data-category="strategy puzzle html5" data-playtime="10">
+                    <div class="game-card-inner">
+                        <div class="game-header">
+                            <div class="game-badge">
+                                <i class="fas fa-star"></i> 精选
+                            </div>
+                            <div class="game-image">
+                                <div class="pixel-art tic-tac-toe-large"></div>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">井字棋大师</h3>
+                            <p class="game-description">
+                                经典策略游戏现代化重制，支持AI对战、在线多人模式和锦标赛系统。
+                                包含智能难度调节和成就系统。
+                            </p>
+                            <div class="game-meta">
+                                <span class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    5-10分钟/局
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    1-2人
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-code"></i>
+                                    HTML5
+                                </span>
+                            </div>
+                            <div class="game-tags">
+                                <span class="tag strategy">策略</span>
+                                <span class="tag puzzle">逻辑</span>
+                                <span class="tag multiplayer">多人</span>
+                                <span class="tag html5">HTML5</span>
+                            </div>
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-text">4.5/5</span>
+                            </div>
+                        </div>
+                        <div class="game-actions">
+                            <a href="games/tic-tac-toe.html" class="btn btn-play-full">
+                                <i class="fas fa-play-circle"></i> 立即游玩
+                            </a>
+                            <button class="btn btn-details" data-game="tic-tac-toe">
+                                <i class="fas fa-info-circle"></i> 详情
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 像素迷宫 -->
+                <div class="game-card" data-category="puzzle casual html5" data-playtime="8">
+                    <div class="game-card-inner">
+                        <div class="game-header">
+                            <div class="game-image">
+                                <div class="pixel-art maze-large"></div>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">像素迷宫</h3>
+                            <p class="game-description">
+                                随机生成的复古风格迷宫，每个关卡都是独特的挑战。
+                                包含解谜元素、隐藏房间和特殊道具。
+                            </p>
+                            <div class="game-meta">
+                                <span class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    10-20分钟
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    单人
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-code"></i>
+                                    HTML5
+                                </span>
+                            </div>
+                            <div class="game-tags">
+                                <span class="tag puzzle">解谜</span>
+                                <span class="tag retro">复古</span>
+                                <span class="tag adventure">冒险</span>
+                                <span class="tag html5">HTML5</span>
+                            </div>
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-text">4.0/5</span>
+                            </div>
+                        </div>
+                        <div class="game-actions">
+                            <button class="btn btn-coming-soon">
+                                <i class="fas fa-hourglass-half"></i> 开发中
+                            </button>
+                            <button class="btn btn-details" data-game="maze">
+                                <i class="fas fa-info-circle"></i> 预览
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 太空保卫战 -->
+                <div class="game-card" data-category="arcade action html5" data-playtime="12">
+                    <div class="game-card-inner">
+                        <div class="game-header">
+                            <div class="game-image">
+                                <div class="pixel-art space-large"></div>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">太空保卫战</h3>
+                            <p class="game-description">
+                                街机风格的太空射击游戏，对抗无尽的敌人浪潮。
+                                包含多种武器、升级系统和排行榜。
+                            </p>
+                            <div class="game-meta">
+                                <span class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    无限模式
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    1-4人
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-code"></i>
+                                    HTML5
+                                </span>
+                            </div>
+                            <div class="game-tags">
+                                <span class="tag arcade">街机</span>
+                                <span class="tag action">动作</span>
+                                <span class="tag shooter">射击</span>
+                                <span class="tag html5">HTML5</span>
+                            </div>
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">5.0/5</span>
+                            </div>
+                        </div>
+                        <div class="game-actions">
+                            <button class="btn btn-coming-soon">
+                                <i class="fas fa-hourglass-half"></i> 开发中
+                            </button>
+                            <button class="btn btn-details" data-game="space">
+                                <i class="fas fa-info-circle"></i> 预览
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 数字华容道 -->
+                <div class="game-card" data-category="puzzle casual html5" data-playtime="6">
+                    <div class="game-card-inner">
+                        <div class="game-header">
+                            <div class="game-image">
+                                <div class="pixel-art slider-large"></div>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">数字华容道</h3>
+                            <p class="game-description">
+                                经典数字滑块游戏，锻炼逻辑思维和空间想象力。
+                                支持3x3到5x5多种难度，记录最佳成绩。
+                            </p>
+                            <div class="game-meta">
+                                <span class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    3-15分钟
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    单人
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-code"></i>
+                                    HTML5
+                                </span>
+                            </div>
+                            <div class="game-tags">
+                                <span class="tag puzzle">解谜</span>
+                                <span class="tag logic">逻辑</span>
+                                <span class="tag casual">休闲</span>
+                                <span class="tag html5">HTML5</span>
+                            </div>
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-text">4.0/5</span>
+                            </div>
+                        </div>
+                        <div class="game-actions">
+                            <button class="btn btn-coming-soon">
+                                <i class="fas fa-hourglass-half"></i> 开发中
+                            </button>
+                            <button class="btn btn-details" data-game="slider">
+                                <i class="fas fa-info-circle"></i> 预览
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 记忆卡片 -->
+                <div class="game-card" data-category="puzzle casual html5" data-playtime="4">
+                    <div class="game-card-inner">
+                        <div class="game-header">
+                            <div class="game-image">
+                                <div class="pixel-art memory-large"></div>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">记忆卡片</h3>
+                            <p class="game-description">
+                                锻炼记忆力的卡片匹配游戏，包含多种主题卡牌。
+                                支持计时模式和挑战模式，记录最佳完成时间。
+                            </p>
+                            <div class="game-meta">
+                                <span class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    2-5分钟
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    单人
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-code"></i>
+                                    HTML5
+                                </span>
+                            </div>
+                            <div class="game-tags">
+                                <span class="tag puzzle">记忆</span>
+                                <span class="tag casual">休闲</span>
+                                <span class="tag family">家庭</span>
+                                <span class="tag html5">HTML5</span>
+                            </div>
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-text">3.5/5</span>
+                            </div>
+                        </div>
+                        <div class="game-actions">
+                            <button class="btn btn-coming-soon">
+                                <i class="fas fa-hourglass-half"></i> 开发中
+                            </button>
+                            <button class="btn btn-details" data-game="memory">
+                                <i class="fas fa-info-circle"></i> 预览
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2048 -->
+                <div class="game-card" data-category="puzzle casual html5" data-playtime="8">
+                    <div class="game-card-inner">
+                        <div class="game-header">
+                            <div class="game-image">
+                                <div class="pixel-art numbers-large"></div>
+                            </div>
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">2048进化版</h3>
+                            <p class="game-description">
+                                数字合并游戏的进化版，包含新规则、特殊方块和挑战模式。
+                                支持无限模式和每日挑战。
+                            </p>
+                            <div class="game-meta">
+                                <span class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    5-30分钟
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    单人
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-code"></i>
+                                    HTML5
+                                </span>
+                            </div>
+                            <div class="game-tags">
+                                <span class="tag puzzle">数字</span>
+                                <span class="tag strategy">策略</span>
+                                <span class="tag casual">休闲</span>
+                                <span class="tag html5">HTML5</span>
+                            </div>
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-text">4.5/5</span>
+                            </div>
+                        </div>
+                        <div class="game-actions">
+                            <button class="btn btn-coming-soon">
+                                <i class="fas fa-hourglass-half"></i> 开发中
+                            </button>
+                            <button class="btn btn-details" data-game="2048">
+                                <i class="fas fa-info-circle"></i> 预览
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 游戏统计 -->
+            <div class="games-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>游戏总数</h4>
+                        <p class="stat-number">6</p>
+                        <p class="stat-label">持续增加中</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>HTML5游戏</h4>
+                        <p class="stat-number">100%</p>
+                        <p class="stat-label">支持在线游玩</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>总游戏时长</h4>
+                        <p class="stat-number">25+</p>
+                        <p class="stat-label">小时可玩内容</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>支持多人</h4>
+                        <p class="stat-number">2</p>
+                        <p class="stat-label">款多人游戏</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏详情模态框 -->
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body">
+                <!-- 内容由JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-text">Sainol</span>
+                        <span class="logo-dot">.</span>
+                    </a>
+                    <p class="footer-description">
+                        专注于创造沉浸式游戏体验的新人游戏策划
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>快速链接</h4>
+                        <a href="index.html">首页</a>
+                        <a href="games.html">游戏库</a>
+                        <a href="about.html">关于我</a>
+                        <a href="contact.html">联系</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>游戏分类</h4>
+                        <a href="#" data-category="strategy">策略游戏</a>
+                        <a href="#" data-category="puzzle">解谜游戏</a>
+                        <a href="#" data-category="arcade">街机游戏</a>
+                        <a href="#" data-category="casual">休闲游戏</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>联系信息</h4>
+                        <p><i class="fas fa-envelope"></i> sainol@163.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 中国</p>
+                        <p><i class="fas fa-briefcase"></i> 新人游戏策划</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sainol. 保留所有权利。</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/games.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
