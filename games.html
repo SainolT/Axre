@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏作品 - 游戏开发者作品集</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-gamepad"></i>
+                <span>汤雅婷</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="games.html" class="active"><i class="fas fa-gamepad"></i> 游戏作品</a></li>
+                <li><a href="about.html"><i class="fas fa-user"></i> 关于我</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> 联系</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+            <li><a href="games.html" class="active"><i class="fas fa-gamepad"></i> 游戏作品</a></li>
+            <li><a href="about.html"><i class="fas fa-user"></i> 关于我</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> 联系</a></li>
+        </ul>
+    </div>
+
+    <!-- 游戏列表页面 -->
+    <div class="games-page">
+        <div class="container">
+            <!-- 页面标题 -->
+            <header class="page-header">
+                <h1 class="page-title">我的<span class="highlight">游戏作品</span></h1>
+                <p class="page-subtitle">点击即可在网页中直接游玩，所有游戏都使用纯HTML/CSS/JavaScript开发</p>
+            </header>
+
+            <!-- 游戏分类筛选 -->
+            <div class="game-filters">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-th"></i> 全部游戏
+                    </button>
+                    <button class="filter-btn" data-filter="html5">
+                        <i class="fab fa-html5"></i> HTML5游戏
+                    </button>
+                    <button class="filter-btn" data-filter="puzzle">
+                        <i class="fas fa-brain"></i> 益智游戏
+                    </button>
+                    <button class="filter-btn" data-filter="action">
+                        <i class="fas fa-space-shuttle"></i> 动作游戏
+                    </button>
+                    <button class="filter-btn" data-filter="classic">
+                        <i class="fas fa-chess-board"></i> 经典游戏
+                    </button>
+                </div>
+            </div>
+
+            <!-- 游戏网格 -->
+            <div class="games-grid" id="gamesGrid">
+                <!-- 井字棋 -->
+                <div class="game-card" data-categories="html5,classic">
+                    <div class="game-card-header">
+                        <div class="game-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <span class="game-tag html5">HTML5</span>
+                        <span class="game-tag classic">经典</span>
+                    </div>
+                    <div class="game-card-body">
+                        <h3 class="game-title">井字棋大师</h3>
+                        <p class="game-description">经典的两人对战井字棋游戏，支持AI对战、三种难度级别、动画效果和音效系统。</p>
+                        <div class="game-features">
+                            <div class="feature">
+                                <i class="fas fa-users"></i>
+                                <span>1-2 玩家</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-robot"></i>
+                                <span>AI 对战</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-volume-up"></i>
+                                <span>音效系统</span>
+                            </div>
+                        </div>
+                        <div class="game-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Web Audio</span>
+                        </div>
+                    </div>
+                    <div class="game-card-footer">
+                        <a href="games/tic-tac-toe.html" class="btn btn-play">
+                            <i class="fas fa-play"></i> 开始游戏
+                        </a>
+                        <a href="games/tic-tac-toe.html" class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> 详情
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 记忆卡片 -->
+                <div class="game-card" data-categories="html5,puzzle">
+                    <div class="game-card-header">
+                        <div class="game-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span class="game-tag html5">HTML5</span>
+                        <span class="game-tag puzzle">益智</span>
+                    </div>
+                    <div class="game-card-body">
+                        <h3 class="game-title">记忆挑战</h3>
+                        <p class="game-description">测试你的记忆力的卡片匹配游戏，多种难度级别，计时器和分数系统，挑战你的大脑极限！</p>
+                        <div class="game-features">
+                            <div class="feature">
+                                <i class="fas fa-user"></i>
+                                <span>单人游戏</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>3种难度</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-stopwatch"></i>
+                                <span>计时模式</span>
+                            </div>
+                        </div>
+                        <div class="game-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">CSS动画</span>
+                            <span class="tech-tag">响应式</span>
+                            <span class="tech-tag">本地存储</span>
+                        </div>
+                    </div>
+                    <div class="game-card-footer">
+                        <a href="#" class="btn btn-play disabled">
+                            <i class="fas fa-clock"></i> 开发中
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> 预览
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 太空射击 -->
+                <div class="game-card" data-categories="html5,action">
+                    <div class="game-card-header">
+                        <div class="game-icon">
+                            <i class="fas fa-space-shuttle"></i>
+                        </div>
+                        <span class="game-tag html5">HTML5</span>
+                        <span class="game-tag action">动作</span>
+                    </div>
+                    <div class="game-card-body">
+                        <h3 class="game-title">太空防御者</h3>
+                        <p class="game-description">经典的太空射击游戏，控制飞船躲避陨石和敌人，获得最高分数！Canvas渲染，物理碰撞检测。</p>
+                        <div class="game-features">
+                            <div class="feature">
+                                <i class="fas fa-user"></i>
+                                <span>单人游戏</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-chart-line"></i>
+                                <span>积分榜</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-gamepad"></i>
+                                <span>键盘控制</span>
+                            </div>
+                        </div>
+                        <div class="game-tech">
+                            <span class="tech-tag">Canvas</span>
+                            <span class="tech-tag">游戏物理</span>
+                            <span class="tech-tag">音效系统</span>
+                            <span class="tech-tag">游戏循环</span>
+                        </div>
+                    </div>
+                    <div class="game-card-footer">
+                        <a href="#" class="btn btn-play disabled">
+                            <i class="fas fa-clock"></i> 开发中
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> 预览
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 贪吃蛇 -->
+                <div class="game-card" data-categories="html5,classic">
+                    <div class="game-card-header">
+                        <div class="game-icon">
+                            <i class="fas fa-snake"></i>
+                        </div>
+                        <span class="game-tag html5">HTML5</span>
+                        <span class="game-tag classic">经典</span>
+                    </div>
+                    <div class="game-card-body">
+                        <h3 class="game-title">经典贪吃蛇</h3>
+                        <p class="game-description">怀旧风格的贪吃蛇游戏，控制蛇吃到食物并不断成长，避免撞到墙壁或自己的身体。</p>
+                        <div class="game-features">
+                            <div class="feature">
+                                <i class="fas fa-user"></i>
+                                <span>单人游戏</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-bolt"></i>
+                                <span>速度递增</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-star"></i>
+                                <span>高分记录</span>
+                            </div>
+                        </div>
+                        <div class="game-tech">
+                            <span class="tech-tag">Canvas</span>
+                            <span class="tech-tag">游戏循环</span>
+                            <span class="tech-tag">键盘控制</span>
+                            <span class="tech-tag">本地存储</span>
+                        </div>
+                    </div>
+                    <div class="game-card-footer">
+                        <a href="#" class="btn btn-play disabled">
+                            <i class="fas fa-clock"></i> 开发中
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> 预览
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 俄罗斯方块 -->
+                <div class="game-card" data-categories="html5,puzzle">
+                    <div class="game-card-header">
+                        <div class="game-icon">
+                            <i class="fas fa-th"></i>
+                        </div>
+                        <span class="game-tag html5">HTML5</span>
+                        <span class="game-tag puzzle">益智</span>
+                    </div>
+                    <div class="game-card-body">
+                        <h3 class="game-title">俄罗斯方块</h3>
+                        <p class="game-description">经典的俄罗斯方块游戏，旋转和移动方块，完成整行消除，挑战最高分数！</p>
+                        <div class="game-features">
+                            <div class="feature">
+                                <i class="fas fa-user"></i>
+                                <span>单人游戏</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-level-up-alt"></i>
+                                <span>多级别</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-music"></i>
+                                <span>背景音乐</span>
+                            </div>
+                        </div>
+                        <div class="game-tech">
+                            <span class="tech-tag">Canvas</span>
+                            <span class="tech-tag">游戏逻辑</span>
+                            <span class="tech-tag">碰撞检测</span>
+                            <span class="tech-tag">音效</span>
+                        </div>
+                    </div>
+                    <div class="game-card-footer">
+                        <a href="#" class="btn btn-play disabled">
+                            <i class="fas fa-clock"></i> 开发中
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> 预览
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 打砖块 -->
+                <div class="game-card" data-categories="html5,action">
+                    <div class="game-card-header">
+                        <div class="game-icon">
+                            <i class="fas fa-square"></i>
+                        </div>
+                        <span class="game-tag html5">HTML5</span>
+                        <span class="game-tag action">动作</span>
+                    </div>
+                    <div class="game-card-body">
+                        <h3 class="game-title">打砖块</h3>
+                        <p class="game-description">经典打砖块游戏，控制挡板反弹球击碎所有砖块，多种关卡和道具系统。</p>
+                        <div class="game-features">
+                            <div class="feature">
+                                <i class="fas fa-user"></i>
+                                <span>单人游戏</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-map"></i>
+                                <span>多关卡</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-gift"></i>
+                                <span>道具系统</span>
+                            </div>
+                        </div>
+                        <div class="game-tech">
+                            <span class="tech-tag">Canvas</span>
+                            <span class="tech-tag">物理引擎</span>
+                            <span class="tech-tag">碰撞检测</span>
+                            <span class="tech-tag">关卡设计</span>
+                        </div>
+                    </div>
+                    <div class="game-card-footer">
+                        <a href="#" class="btn btn-play disabled">
+                            <i class="fas fa-clock"></i> 开发中
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i> 预览
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 游戏统计 -->
+            <div class="game-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">个游戏项目</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">种技术栈</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">种游戏类型</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">个已上线</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 开发计划 -->
+            <div class="development-plan">
+                <h2 class="section-title">开发<span class="highlight">计划</span></h2>
+                <div class="plan-timeline">
+                    <div class="timeline-item completed">
+                        <div class="timeline-date">2026年5月</div>
+                        <div class="timeline-content">
+                            <h3>井字棋大师</h3>
+                            <p>已完成 - 包含AI对战、三种难度级别、音效和动画</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item in-progress">
+                        <div class="timeline-date">2026年6月</div>
+                        <div class="timeline-content">
+                            <h3>记忆挑战</h3>
+                            <p>开发中 - 卡片匹配记忆游戏，多种难度模式</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item planned">
+                        <div class="timeline-date">2026年7月</div>
+                        <div class="timeline-content">
+                            <h3>太空防御者</h3>
+                            <p>计划中 - Canvas太空射击游戏</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-gamepad"></i>
+                        <span>汤雅婷</span>
+                    </a>
+                    <p class="footer-description">
+                        创造有趣的游戏体验，分享游戏的快乐。
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="games.html">游戏作品</a></li>
+                        <li><a href="about.html">关于我</a></li>
+                        <li><a href="contact.html">联系</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">技术栈</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">HTML5</a></li>
+                        <li><a href="#">CSS3</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                        <li><a href="#">Canvas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">联系我</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> tangyating@dodjoy.com</li>
+                        <li><i class="fas fa-building"></i> 大梦龙途 · 烽火产品线</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 长沙</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 汤雅婷 - 游戏开发者作品集. 保留所有权利.</p>
+                <p>本网站托管于 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript文件 -->
+    <script src="js/main.js"></script>
+    <script src="js/games.js"></script>
+</body>
+</html>
